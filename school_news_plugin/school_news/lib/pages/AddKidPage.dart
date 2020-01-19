@@ -229,7 +229,7 @@ class _AddKidPageState extends State<AddKidPage> {
     NetworkUtil.post(
         "/api/parent/student/add",
         {
-          "confirm": isComfirm,
+          "confirm": isComfirm.toString(),
           "studentno": numberCtl.text,
           "birthdate": bornDate,
           "relationship": data.id.toString()

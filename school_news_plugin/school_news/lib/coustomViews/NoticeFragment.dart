@@ -66,7 +66,7 @@ class _NoticeFragmentState extends State<NoticeFragment> {
             backgroundColor: Color(Global.colorPrimaryDark),
             centerTitle: true,
             title:
-                Text("通告", style: TextStyle(color: Colors.white, fontSize: 20)),
+            Text("通告", style: TextStyle(color: Colors.white, fontSize: 20)),
             expandedHeight: 105,
             floating: true,
             pinned: true,
@@ -75,40 +75,41 @@ class _NoticeFragmentState extends State<NoticeFragment> {
               Visibility(
                 visible: !Global.preferences.getBool("isTeacher"),
                 child: Container(
-                  alignment: Alignment.center,
-                  margin:
-                  EdgeInsets.only(left: 16,right: 5),
-                  child: Row(
-                    children: <Widget>[
-                      Text(
-                          Global.childrenList.length == 0
-                              ? ""
-                              : Global.selectedChild.name,
-                          style:
-                          TextStyle(color: Colors.white, fontSize: 16)),
-                      PopupMenuButton(
-                        tooltip: "學生列表",
-                        offset: Offset.fromDirection(1,45),
-                        icon: Icon(
-                          Icons.arrow_drop_down,
-                          color: Colors.white,
+                    alignment: Alignment.center,
+                    margin: EdgeInsets.only(left: 16, right: 5),
+                    child: PopupMenuButton(
+                      tooltip: "學生列表",
+                      offset: Offset.fromDirection(1, 45),
+                      child: Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Row(
+                          children: <Widget>[
+                            Text(
+                                Global.childrenList.length == 0
+                                    ? ""
+                                    : Global.selectedChild.name,
+                                style:
+                                TextStyle(color: Colors.white, fontSize: 16)),
+                            Icon(
+                              Icons.keyboard_arrow_down,
+                              color: Colors.white,
+                            ),
+                          ],
                         ),
-                        onSelected: (choice) {
-                          Global.selectedChild = choice;
-                          Global.eventBus.fire(UpdateChildEvent(choice));
-                          onRefreshData();
-                        },
-                        //Called when the user selects a value from the popup menu created by this button..
-                        itemBuilder: (BuildContext context) {
-                          return Global.childrenList.map((childResults choice) {
-                            return new PopupMenuItem(
-                                child: new Text(choice.name), value: choice);
-                          }).toList();
-                        },
-                      )
-                    ],
-                  ),
-                ),
+                      ),
+                      onSelected: (choice) {
+                        Global.selectedChild = choice;
+                        Global.eventBus.fire(UpdateChildEvent(choice));
+                        onRefreshData();
+                      },
+                      //Called when the user selects a value from the popup menu created by this button..
+                      itemBuilder: (BuildContext context) {
+                        return Global.childrenList.map((childResults choice) {
+                          return new PopupMenuItem(
+                              child: new Text(choice.name), value: choice);
+                        }).toList();
+                      },
+                    )),
               )
             ],
             flexibleSpace: FlexibleSpaceBar(
@@ -135,7 +136,7 @@ class _NoticeFragmentState extends State<NoticeFragment> {
           ),
           SliverList(
             delegate: SliverChildBuilderDelegate(
-              (context, index) => NoticeGroupItemView(dataList[index]),
+                  (context, index) => NoticeGroupItemView(dataList[index]),
               childCount: dataList.length,
             ),
           ),
@@ -227,7 +228,8 @@ class NoticeGroupItemView extends StatelessWidget {
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
                 itemBuilder: (context, i) => NoticeChildIteView(noticelist[i]),
-                separatorBuilder: (context, i) => Divider(
+                separatorBuilder: (context, i) =>
+                    Divider(
                       height: 1,
                     ),
                 itemCount: noticelist.length),
